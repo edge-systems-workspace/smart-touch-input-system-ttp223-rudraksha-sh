@@ -1,37 +1,73 @@
+# Touch Detection System using TTP223
 
-This directory is intended for project header files.
+## 📖 Overview
+This project demonstrates how to interface the **TTP223 capacitive touch sensor** with an Arduino board.
+The system reads digital input from the sensor and displays structured output on the **Serial Monitor**.
 
-A header file is a file containing C declarations and macro definitions
-to be shared between several project source files. You request the use of a
-header file in your project source file (C, C++, etc) located in `src` folder
-by including it, with the C preprocessing directive `#include'.
+---
 
-```src/main.c
+## 🛠️ Hardware Requirements
+- Arduino board (Uno, Nano, or compatible)
+- TTP223 capacitive touch sensor
+- Jumper wires
+- USB cable for programming and power
 
-#include "header.h"
+---
 
-int main (void)
-{
- ...
-}
+## ⚙️ Circuit Connections
+| Arduino Pin | TTP223 Pin |
+|-------------|------------|
+| **D2**      | OUT        |
+| **5V**      | VCC        |
+| **GND**     | GND        |
+
+---
+
+## 📂 File Structure
+```
+project/
+│
+├── src/
+│   └── main.ino        # Arduino source code
+│
+└── include/            # (Optional) header files for larger projects
 ```
 
-Including a header file produces the same results as copying the header file
-into each source file that needs it. Such copying would be time-consuming
-and error-prone. With a header file, the related declarations appear
-in only one place. If they need to be changed, they can be changed in one
-place, and programs that include the header file will automatically use the
-new version when next recompiled. The header file eliminates the labor of
-finding and changing all the copies as well as the risk that a failure to
-find one copy will result in inconsistencies within a program.
+---
 
-In C, the convention is to give header files names that end with `.h'.
+## 📝 Code Explanation
+- **Pin Definition**: `TOUCHPIN` is set to digital pin 2.
+- **Variable**: `touchState` stores the sensor’s digital reading.
+- **Setup**:
+  - Initializes Serial communication at 9600 baud.
+  - Configures the touch pin as `INPUT`.
+  - Prints system initialization message.
+- **Loop**:
+  - Reads sensor state using `digitalRead()`.
+  - Prints `"Touch Detected"` if input is HIGH, otherwise `"No Touch"`.
+  - Adds a small delay (300 ms) for readability.
 
-Read more about using header files in official GCC documentation:
+---
 
-* Include Syntax
-* Include Operation
-* Once-Only Headers
-* Computed Includes
+## ▶️ Usage
+1. Connect the TTP223 sensor to the Arduino as per the circuit diagram.
+2. Upload the `main.ino` code to your Arduino board.
+3. Open the **Serial Monitor** (set baud rate to 9600).
+4. Touch the sensor pad:
+   - **HIGH signal → "Touch Detected"**
+   - **LOW signal → "No Touch"**
 
-https://gcc.gnu.org/onlinedocs/cpp/Header-Files.html
+---
+
+## 🔧 Customization
+- Adjust the **delay** in `loop()` for faster/slower response.
+- Use the sensor output to **control LEDs, buzzers, or relays** for interactive projects.
+
+---
+
+## 📚 References
+- [TTP223 Capacitive Touch Sensor Datasheet](https://www.electrodragon.com/w/TTP223)
+- [Arduino Digital I/O Documentation](https://www.arduino.cc/en/Tutorial/Foundations/DigitalPins)
+
+---
+```
